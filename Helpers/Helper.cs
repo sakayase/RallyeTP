@@ -18,11 +18,9 @@ namespace Helpers
             while (!isValid)
             {
                 input = Console.ReadLine() ?? "";
-                Console.WriteLine(input) ;
                 if (validator != null)
                 {
                     isValid = validator(input);
-                    Console.WriteLine(isValid);
                 } else
                 {
                     isValid = true;
