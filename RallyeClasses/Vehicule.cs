@@ -1,18 +1,14 @@
-﻿namespace RallyeClasses
+﻿using System.Text.Json.Serialization;
+
+namespace RallyeClasses
 {
-    public abstract class Vehicule
+    [JsonDerivedType(typeof(Voiture), typeDiscriminator: "voiture")]
+    [JsonDerivedType(typeof(Camion), typeDiscriminator: "camion")]
+    public class Vehicule
     {
-        public string Marque { get; set; }
-        public string Modele { get; set; }
-        public string Numero { get; set; }
-
-
-        public Vehicule(string Marque, string Modele, string Numero)
-        {
-            this.Marque = Marque;
-            this.Modele = Modele;
-            this.Numero = Numero;
-        }
+        public string Marque { get; set; } = "";
+        public string Modele { get; set; } = "";
+        public string Numero { get; set; } = "";
 
         public override string ToString()
         {
