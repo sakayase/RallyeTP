@@ -17,6 +17,9 @@ namespace Rallye
         List<Vehicule> Vehicules = []; // Make private ?
         private string path = "vehicules.json";
 
+        /// <summary>
+        /// Initialise les données à charger
+        /// </summary>
         public async void Init()
         {         
             string? json = await Helper.ReadFromFile(path);
@@ -26,11 +29,20 @@ namespace Rallye
             } 
         }
 
+        /// <summary>
+        /// List un string json dans au path donné
+        /// et le deserialise en liste de véhicules (avec polymorphisme voiture/camion)
+        /// </summary>
+        /// <param name="json"></param>
         public void DeserialiseJson(string json)
         {
             this.Vehicules = JsonSerializer.Deserialize<List<Vehicule>>(json) ?? [];
         }
 
+        /// <summary>
+        /// Serialise la liste de vehicules en string json
+        /// et ecrit la liste dans fichier au path donné
+        /// </summary>
         public async void SerializeAndSave()
         {
             try
@@ -137,6 +149,9 @@ namespace Rallye
             }
         }
 
+        /// <summary>
+        /// Demande à l'utilisateur un numéro imat et supprime le vehicule associé
+        /// </summary>
         public void DeleteVehicule()
         {
             Vehicule? vehicule = FindVehicule();
@@ -147,6 +162,10 @@ namespace Rallye
 
 
 
+        /// <summary>
+        /// Crée une voiture à l'aide de l'utilisateur
+        /// </summary>
+        /// <returns></returns>
         private static Voiture CreateVoiture()
         {
             string marque = Helper.PromptString("Marque de la voiture :", Validators.ValidateMarque);
@@ -161,6 +180,10 @@ namespace Rallye
             return voiture;
         }
 
+        /// <summary>
+        /// Crée un camion à l'aide de l'utilisateur
+        /// </summary>
+        /// <returns></returns>
         private static Camion CreateCamion()
         {
             string marque = Helper.PromptString("Marque du camion :", Validators.ValidateMarque);
@@ -175,6 +198,9 @@ namespace Rallye
             return camion;
         }
 
+        /// <summary>
+        /// Montre tout les véhicules
+        /// </summary>
         public void DisplayAll()
         {
             Console.WriteLine("");
@@ -186,6 +212,10 @@ namespace Rallye
             Console.WriteLine("");
         }
 
+        /// <summary>
+        /// Montre toute une liste donnée de vehicule
+        /// </summary>
+        /// <param name="list"></param>
         public void DisplayList(List<Vehicule> list) 
         {
             Console.WriteLine("");
@@ -197,6 +227,11 @@ namespace Rallye
             Console.WriteLine("");
         }
 
+        /// <summary>
+        /// Demande à l'utilisateur une proprieté et un ordre (asc ou desc) sur
+        /// lequel trier la liste de vehicules
+        /// Ensuite affiche la liste triée
+        /// </summary>
         public void OrderBy()
         {
             bool exitOrder = false;
@@ -278,6 +313,7 @@ namespace Rallye
         /// <summary>
         /// Affiche un menu à l'utilisateur qui doit choisir une proprieté sur laquelle filtrer
         /// Si c'est disponible, demande un comparateur pour faire le filtre.
+        /// Ensuite affiche la liste filtrée
         /// </summary>
         public void FilterBy()
         {
