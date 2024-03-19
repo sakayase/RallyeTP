@@ -15,7 +15,7 @@ namespace Helpers
                 Console.WriteLine("Le numéro ne peut être vide.");
                 return false;
             }
-            if (Numero.Length >= 6 && Numero.Length <= 4)
+            if (Numero.Length > 6 || Numero.Length < 4)
             {
                 Console.WriteLine("Le numéro doit etre composé de 4 caracteres ou plus et 6 character ou moins.");
                 return false;
@@ -25,7 +25,7 @@ namespace Helpers
 
         public static bool ValidatePoids(int Poids)
         {
-            if (Poids < 0) 
+            if (Poids <= 0) 
             {
                 Console.WriteLine("Le poids doit etre positif.");
                 return false;
@@ -45,7 +45,7 @@ namespace Helpers
 
         public static bool ValidatePuissance(int Puissance)
         {
-            if (Puissance < 0)
+            if (Puissance <= 0)
             {
                 Console.WriteLine("La puissance doit être positive");
                 return false;
