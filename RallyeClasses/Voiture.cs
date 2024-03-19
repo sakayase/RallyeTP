@@ -8,6 +8,16 @@ namespace RallyeClasses
 {
     public class Voiture : Vehicule
     {
-        public required int puissance {  get; set; }
+        public int Puissance {  get; set; }
+
+        public Voiture(string Marque, string Model, string Numero, int Puissance) : base(Marque, Model, Numero)
+        {
+            this.Puissance = Puissance;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + $"| Puissance: {Puissance}cv";
+        }
     }
 }

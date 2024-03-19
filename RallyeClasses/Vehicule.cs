@@ -2,16 +2,21 @@
 {
     public abstract class Vehicule
     {
-        public required string Marque { get; set; }
-        public required string Modele { get; set; }
-        public required string Numero { get; set; }
+        public string Marque { get; set; }
+        public string Modele { get; set; }
+        public string Numero { get; set; }
 
 
-/*        Vehicule(string Marque, string Modele, string Numero)
+        public Vehicule(string Marque, string Modele, string Numero)
         {
             this.Marque = Marque;
             this.Modele = Modele;
             this.Numero = Numero;
-        }*/
+        }
+
+        public override string ToString()
+        {
+            return $"Marque: {Marque} | Modele: {Modele} | Numero: {Numero} ";
+        }
     }
 }
