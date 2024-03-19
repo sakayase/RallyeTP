@@ -62,5 +62,15 @@ namespace Helpers
             }
             return true;
         }
+
+        public static bool ValidateComparateur(string comparateur)
+        {
+            if (comparateur != "=" && comparateur != "<" && comparateur != ">" && comparateur != "<=" && comparateur != ">=")
+            {
+                Console.WriteLine("Le comparateur n'est pas valide (=, >=, <=, >, < :");
+                return false;
+            }
+            return true;
+        }
     }
 }

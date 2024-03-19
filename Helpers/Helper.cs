@@ -18,9 +18,11 @@ namespace Helpers
             while (!isValid)
             {
                 input = Console.ReadLine() ?? "";
+                Console.WriteLine(input) ;
                 if (validator != null)
                 {
                     isValid = validator(input);
+                    Console.WriteLine(isValid);
                 } else
                 {
                     isValid = true;
@@ -67,6 +69,24 @@ namespace Helpers
                 }
             }
             return num;
+        }
+
+        public static bool PromptBool(string label = "bool ?")
+        {
+            while (true)
+            {
+                string input = PromptString(label).ToLower();
+                if (input == "y" || input == "oui" || input == "o")
+                {
+                    return true;
+                } else if (input == "n" || input == "non" || input == "no")
+                {
+                    return false;
+                } else
+                {
+                    Console.WriteLine("La valeur doit etre \"y\" ou \"oui\" ou \"o\" ou \"n\" ou \"non\" ou \"no\"");
+                }
+            }
         }
 
         public static async Task<string?> ReadFromFile(string path)

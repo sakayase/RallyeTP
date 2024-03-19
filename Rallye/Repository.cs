@@ -186,6 +186,192 @@ namespace Rallye
             Console.WriteLine("");
         }
 
+        public void DisplayList(List<Vehicule> list) 
+        {
+            Console.WriteLine("");
+            Console.WriteLine("**********************");
+            Console.WriteLine("");
+            list.ForEach(v => { Console.WriteLine(v.ToString()); });
+            Console.WriteLine("");
+            Console.WriteLine("**********************");
+            Console.WriteLine("");
+        }
+
+        public void OrderBy()
+        {
+            bool exitOrder = false;
+            while (!exitOrder)
+            {
+                bool asc = false;
+                int input = Helper.CreateMenu(["Marque", "Modele", "Numero", "Puissance", "Poids", "Quitter"], "Trier par quelle propriété ?");
+                List<Vehicule> filteredVehicules = new();
+                List<Voiture> voitures = Vehicules.Where(predicate: v => v is Voiture).Cast<Voiture>().ToList();
+                List<Camion> camions = Vehicules.Where(predicate: v => v is Camion).Cast<Camion>().ToList();
+                switch (input)
+                {
+                    case 1:
+                        asc = Helper.PromptBool("Ordre ascendant (y/n) ?");
+                        if (asc)
+                        {
+                            DisplayList(Vehicules.OrderBy(v => v.Marque).ToList());
+                        } else
+                        {
+                            DisplayList(Vehicules.OrderByDescending(v => v.Marque).ToList());
+                        }
+                        break;
+
+                    case 2:
+                        asc = Helper.PromptBool("Ordre ascendant (y/n) ?");
+                        if (asc)
+                        {
+                            DisplayList(Vehicules.OrderBy(v => v.Modele).ToList());
+                        }
+                        else
+                        {
+                            DisplayList(Vehicules.OrderByDescending(v => v.Modele).ToList());
+                        }
+                        break;
+
+                    case 3:
+                        asc = Helper.PromptBool("Ordre ascendant (y/n) ?");
+                        if (asc)
+                        {
+                            DisplayList(Vehicules.OrderBy(v => v.Numero).ToList());
+                        }
+                        else
+                        {
+                            DisplayList(Vehicules.OrderByDescending(v => v.Numero).ToList());
+                        }
+                        break;
+
+                    case 4:
+                        asc = Helper.PromptBool("Ordre ascendant (y/n) ?");
+                        if (asc)
+                        {
+                            DisplayList(voitures.OrderBy(v => v.Puissance).Cast<Vehicule>().ToList());
+                        }
+                        else
+                        {
+                            DisplayList(voitures.OrderByDescending(v => v.Puissance).Cast<Vehicule>().ToList());
+                        }
+                        break;
+
+                    case 5:
+                        asc = Helper.PromptBool("Ordre ascendant (y/n) ?");
+                        if (asc)
+                        {
+                            DisplayList(camions.OrderBy(v => v.Poids).Cast<Vehicule>().ToList());
+                        }
+                        else
+                        {
+                            DisplayList(camions.OrderByDescending(v => v.Poids).Cast<Vehicule>().ToList());
+                        }
+                        break;
+
+                    case 6:
+                        exitOrder = true;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Affiche un menu à l'utilisateur qui doit choisir une proprieté sur laquelle filtrer
+        /// Si c'est disponible, demande un comparateur pour faire le filtre.
+        /// </summary>
+        public void FilterBy()
+        {
+            bool exitFilter = false;
+            while (!exitFilter)
+            {
+                int input = Helper.CreateMenu(["Marque", "Modele", "Numero", "Puissance", "Poids", "Quitter"], "Filtrer par quelle propriété ?");
+                List<Vehicule> filteredVehicules = new();
+                List<Voiture> voitures = Vehicules.Where(predicate: v => v is Voiture).Cast<Voiture>().ToList();
+                List<Camion> camions = Vehicules.Where(predicate: v => v is Camion).Cast<Camion>().ToList();
+
+                string? comparateur;
+                switch (input)
+                {
+                    case 1:
+                        string marque = Helper.PromptString("Marque ?", Validators.ValidateMarque);
+                        DisplayList(Vehicules.Where(v => v.Marque == marque).ToList());
+                        break;
+
+                    case 2:
+                        string modele = Helper.PromptString("Modele ?", Validators.ValidateMarque);
+                        DisplayList(Vehicules.Where(v => v.Modele == modele).ToList());
+                        break;
+
+                    case 3:
+                        string numero = Helper.PromptString("Numero ?", Validators.ValidateMarque);
+                        DisplayList(Vehicules.Where(v => v.Numero == numero).ToList());
+                        break;
+
+                    case 4:
+                        int puissance = Helper.PromptInt("Puissance ?", Validators.ValidatePuissance);
+                        comparateur = Helper.PromptString("Comparateur", Validators.ValidateComparateur);
+                        Console.WriteLine(comparateur);
+                        switch (comparateur)
+                        {
+                            case "=":
+                                Console.WriteLine("1");
+                                DisplayList(voitures.Where(v => v.Puissance == puissance).Cast<Vehicule>().ToList());
+                                break;
+                            case "<=":
+                                Console.WriteLine("2");
+                                DisplayList(voitures.Where(v => v.Puissance <= puissance).Cast<Vehicule>().ToList());
+                                break;
+                            case ">=":
+                                Console.WriteLine("3");
+                                DisplayList(voitures.Where(v => v.Puissance >= puissance).Cast<Vehicule>().ToList());
+                                break;
+                            case "<":
+                                Console.WriteLine("4");
+                                DisplayList(voitures.Where(v => v.Puissance < puissance).Cast<Vehicule>().ToList());
+                                break;
+                            case ">":
+                                Console.WriteLine("5");
+                                DisplayList(voitures.Where(v => v.Puissance > puissance).Cast<Vehicule>().ToList());
+                                break;
+                        }
+                        break;
+
+                    case 5:
+                        int poids = Helper.PromptInt("Poids ?", Validators.ValidatePoids);
+                        comparateur = Helper.PromptString("Comparateur", Validators.ValidateComparateur);
+                        Console.WriteLine(comparateur);
+                        switch (comparateur)
+                        {
+                            case "=":
+                                Console.WriteLine("1");
+                                DisplayList(camions.Where(v => v.Poids == poids).Cast<Vehicule>().ToList());
+                                break;
+                            case "<=":
+                                Console.WriteLine("2");
+                                DisplayList(camions.Where(v => v.Poids <= poids).Cast<Vehicule>().ToList());
+                                break;
+                            case ">=":
+                                Console.WriteLine("3");
+                                DisplayList(camions.Where(v => v.Poids >= poids).Cast<Vehicule>().ToList());
+                                break;
+                            case "<":
+                                Console.WriteLine("4");
+                                DisplayList(camions.Where(v => v.Poids < poids).Cast<Vehicule>().ToList());
+                                break;
+                            case ">":
+                                Console.WriteLine("5");
+                                DisplayList(camions.Where(v => v.Poids > poids).Cast<Vehicule>().ToList());
+                                break;
+                        }
+                        break;
+
+                    case 6:
+                        exitFilter = true;
+                        break;
+                }
+            }
+        }
+
         /// <summary>
         /// Genere un nombre donné de véhicules crées aléatoirement
         /// </summary>

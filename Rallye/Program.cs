@@ -31,11 +31,10 @@ static void main()
                 break;
             case 6:
                 Helper.DisplayError("EN COURS DE DEVELOPPEMENT");
-                Repo.DisplayAll();
+                Repo.OrderBy();
                 break;
             case 7:
-                Helper.DisplayError("EN COURS DE DEVELOPPEMENT");
-                Repo.DisplayAll();
+                Repo.FilterBy();
                 break;
             case 8:
                 Repo.SerializeAndSave();
