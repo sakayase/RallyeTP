@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rallye", "Rallye.csproj", "{C0672CBF-25A7-4507-9DAB-33E8C7C77825}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rallye", "Rallye.csproj", "{C0672CBF-25A7-4507-9DAB-33E8C7C77825}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RallyeClasses", "..\RallyeClasses\RallyeClasses.csproj", "{DD1446B6-BA90-49C9-A1C6-4823147FD584}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RallyeClasses", "..\RallyeClasses\RallyeClasses.csproj", "{DD1446B6-BA90-49C9-A1C6-4823147FD584}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "..\Helpers\Helpers.csproj", "{BDC053EF-7392-4C0E-8512-A8D616E856B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DD1446B6-BA90-49C9-A1C6-4823147FD584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1446B6-BA90-49C9-A1C6-4823147FD584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1446B6-BA90-49C9-A1C6-4823147FD584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC053EF-7392-4C0E-8512-A8D616E856B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC053EF-7392-4C0E-8512-A8D616E856B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC053EF-7392-4C0E-8512-A8D616E856B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC053EF-7392-4C0E-8512-A8D616E856B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
