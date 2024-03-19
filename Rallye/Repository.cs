@@ -408,11 +408,17 @@ namespace Rallye
             }
         }
 
+        public void GenerateData()
+        {
+            int nb = Helper.PromptInt("Nombre de données à generer :", Validators.ValidatePuissance);
+            this.Vehicules = GenerateRandomList(nb);
+        }
+
         /// <summary>
         /// Genere un nombre donné de véhicules crées aléatoirement
         /// </summary>
         /// <param name="nb">Nombre de véhicules générés</param>
-        public static void GenerateRandomList(int nb)
+        public static List<Vehicule> GenerateRandomList(int nb)
         {
             Random rand = new();
 
@@ -441,6 +447,7 @@ namespace Rallye
                     genVehicules.Add(camion);
                 }
             }
+            return genVehicules;
         }
     }
 }

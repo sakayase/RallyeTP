@@ -10,7 +10,7 @@ static void main()
     bool exit = false;
     while (!exit)
     {
-        int value = Helper.CreateMenu(["Créer un véhicule", "Voir un vehicule", "Mettre à jour un véhicule", "Supprimer un véhicule", "Afficher les véhicules", "Trier les véhicules", "Filtrer les véhicules", "Sauvegarder les vehicules", "Quitter"]);
+        int value = Helper.CreateMenu(["Créer un véhicule", "Voir un vehicule", "Mettre à jour un véhicule", "Supprimer un véhicule", "Afficher les véhicules", "Trier les véhicules", "Filtrer les véhicules", "Sauvegarder les vehicules", "Generer des données de test", "Quitter"]);
         switch (value)
         {
             case 1: 
@@ -30,7 +30,6 @@ static void main()
                 Repo.DisplayAll();
                 break;
             case 6:
-                Helper.DisplayError("EN COURS DE DEVELOPPEMENT");
                 Repo.OrderBy();
                 break;
             case 7:
@@ -39,7 +38,10 @@ static void main()
             case 8:
                 Repo.SerializeAndSave();
                 break;
-            case 9: 
+            case 9:
+                Repo.GenerateData();
+                break;
+            case 10: 
                 exit = true; 
                 break;
             default:
